@@ -909,7 +909,7 @@ class LuzCursor():
         self.client_info = 'unknown'
         sql = 'select host from information_schema.processlist where id=%s'
         try:
-            self.cursor.execute(sql, self.cursor.connection.thread_id())
+            self.cursor.execute(sql, (self.cursor.connection.thread_id(),))
             rs = self.cursor.fetchone()
             if rs:
                 self.client_info = rs[0]
